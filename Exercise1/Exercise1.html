@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Exercice 1</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"> crossorigin="anonymous"</script>
+</head>
+
+
+
+<body>
+<p>The temperature  Fahrenheit<input type="text" id="Fahrenheit"></input><button id="convertion1"></button> The Result is:<span id="result_fahrenheit"></span></p>
+<p>The temperature  Celcius<input type="text" id="Celcius"></input><button id="convertion2"></button> The Result is:<span id="result_celcius"></span></p>
+
+
+<script>
+    $(document).ready(() => 
+    {
+        $("#convertion1").click(() => 
+        {
+            let degrees = $("#Fahrenheit").val();
+            $.post("https://ip-uacs.herokuapp.com/api/Convert/ToCelsius/" + degrees,(data) =>
+             {
+                $("#result_fahrenheit").html(Math.round(data));
+            });
+        });
+
+
+            $("#convertion2").click(() => 
+        {
+            let degrees = $("#Celcius").val();
+            $.post("https://ip-uacs.herokuapp.com/api/Convert/ToFahrenheit/" + degrees,(data) =>
+             {
+                 console.log(data)
+                $("#result_celcius").html(Math.round(data));
+            });
+
+
+        });
+    });
+
+
+</script>
+
+</body>
+</html>
